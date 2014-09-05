@@ -1,3 +1,9 @@
+[![Gem Version](https://badge.fury.io/rb/facemock-oauth.svg)](http://badge.fury.io/rb/facemock-oauth)
+[![Build Status](https://travis-ci.org/ogawatti/facemock-oauth.svg?branch=master)](https://travis-ci.org/ogawatti/facemock-oauth)
+[![Coverage Status](https://coveralls.io/repos/ogawatti/facemock-oauth/badge.png?branch=master)](https://coveralls.io/r/ogawatti/facemock-oauth?branch=master)
+[<img src="https://gemnasium.com/ogawatti/facemock-oauth.png" />](https://gemnasium.com/ogawatti/facemock-oauth)
+[![Code Climate](https://codeclimate.com/github/ogawatti/facemock-oauth/badges/gpa.svg)](https://codeclimate.com/github/ogawatti/facemock-oauth)
+
 # Facemock::Oauth
 
 Facemock::OAuth will mock the oauth of facebook using facemock.
@@ -61,7 +67,8 @@ for Sinatra
     run Sinatra::Application
 
 ### User registration to Facemock
-    See the [https://github.com/ogawatti/facemock](facemock).
+
+See the [https://github.com/ogawatti/facemock](facemock).
 
 ## Contributing
 
