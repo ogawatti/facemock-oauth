@@ -11,7 +11,7 @@ describe Facemock::OAuth::Authentication do
   let(:failed_path)  { '/facemock/sign_in' }
   let(:email)        { 'test@example.org' }
   let(:password)     { 'password' }
-  let(:body)         { "email=#{email}&pass=#{password}" }
+  let(:body)         { URI.escape("email=#{email}&pass=#{password}", "@&") }
   let(:content_type) { 'application/x-www-form-urlencoded' }
   let(:header)       { { 'CONTENT_TYPE' => content_type } }
 

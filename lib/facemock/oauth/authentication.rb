@@ -8,7 +8,7 @@ module Facemock
 
       def call(env)
         if env["PATH_INFO"] == Authentication.path && env["REQUEST_METHOD"] == "POST"
-          raw_body = env['rack.input'].gets
+          raw_body = URI.unescape(env['rack.input'].gets)
           body     = query_string_to_hash(raw_body)
           email    = body["email"]
           password = body["pass"]
