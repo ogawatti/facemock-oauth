@@ -5,7 +5,7 @@ require 'facemock/oauth/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "facemock-oauth"
-  spec.version       = Facemock::Oauth::VERSION
+  spec.version       = Facemock::OAuth::VERSION
   spec.authors       = ["ogawatti"]
   spec.email         = ["ogawattim@gmail.com"]
   spec.description   = %q{This gem will mock the oauth of facebook using facemock.}
@@ -18,9 +18,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "facemock"
+  spec.add_dependency "rack"
+
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rack-test"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency "pry"
