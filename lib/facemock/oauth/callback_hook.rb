@@ -19,9 +19,9 @@ module Facemock
       private
 
       def get_access_token(code)
-        authorization_code = Facemock::Database::AuthorizationCode.find_by_string(code)
+        authorization_code = Facemock::AuthorizationCode.find_by_string(code)
         if authorization_code
-          user = Facemock::Database::User.find_by_id(authorization_code.user_id)
+          user = Facemock::User.find_by_id(authorization_code.user_id)
           user ? user.access_token : nil
         else
           nil

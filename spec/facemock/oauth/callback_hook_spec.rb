@@ -43,30 +43,30 @@ describe Facemock::OAuth::CallbackHook do
 
     context 'with code parameter' do
       before do
-        @user = Facemock::Database::User.new({ id: 1, access_token: "test_token" })
-        @authorization_code = Facemock::Database::AuthorizationCode.new(user_id: @user.id)
+        @user = Facemock::User.new({ id: 1, access_token: "test_token" })
+        @authorization_code = Facemock::AuthorizationCode.new(user_id: @user.id)
       end
 
       context 'when authorization code does not found', assert: :RequestSuccess do
         before do
-          allow(Facemock::Database::AuthorizationCode).to receive(:find_by_string) { nil }
+          allow(Facemock::AuthorizationCode).to receive(:find_by_string) { nil }
           @path = path + "?code=#{@authorization_code.string}"
         end
       end
 
       context 'when authorization code found but user does not found', assert: :RequestSuccess do
         before do
-          allow(Facemock::Database::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
-          allow(Facemock::Database::User).to receive(:find_by_id) { nil }
+          allow(Facemock::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
+          allow(Facemock::User).to receive(:find_by_id) { nil }
           @path = path + "?code=#{@authorization_code.string}"
         end
       end
 
       context 'when authorization code found by code parameter', assert: :SetAuthHash do
         before do
-          allow(Facemock::Database::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
-          allow(Facemock::Database::User).to receive(:find_by_id) { @user }
-          allow(Facemock::Database::User).to receive(:find_by_access_token) { @user }
+          allow(Facemock::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
+          allow(Facemock::User).to receive(:find_by_id) { @user }
+          allow(Facemock::User).to receive(:find_by_access_token) { @user }
           @path = path
         end
       end
@@ -79,11 +79,11 @@ describe Facemock::OAuth::CallbackHook do
         @path = "/test"
         Facemock::OAuth::CallbackHook.path = @path
 
-        @user = Facemock::Database::User.new({ id: 1, access_token: "test_token" })
-        @authorization_code = Facemock::Database::AuthorizationCode.new(user_id: @user.id)
-        allow(Facemock::Database::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
-        allow(Facemock::Database::User).to receive(:find_by_id) { @user }
-        allow(Facemock::Database::User).to receive(:find_by_access_token) { @user }
+        @user = Facemock::User.new({ id: 1, access_token: "test_token" })
+        @authorization_code = Facemock::AuthorizationCode.new(user_id: @user.id)
+        allow(Facemock::AuthorizationCode).to receive(:find_by_string) { @authorization_code }
+        allow(Facemock::User).to receive(:find_by_id) { @user }
+        allow(Facemock::User).to receive(:find_by_access_token) { @user }
       end
       after  { Facemock::OAuth::CallbackHook.path = path }
     end
