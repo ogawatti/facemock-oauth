@@ -66,10 +66,10 @@ describe Facemock::OAuth::Authentication do
 
     context 'when user found', assert: :RedirectToOAuthCallback do
       before do
-        @user = Facemock::Database::User.new({id: 1, email: email, password: password})
-        allow(Facemock::Database::User).to receive(:find_by_email) { @user }
-        @authorization_code = Facemock::Database::AuthorizationCode.new(user_id: @user.id)
-        allow(Facemock::Database::AuthorizationCode).to receive(:create!) { @authorization_code }
+        @user = Facemock::User.new({id: 1, email: email, password: password})
+        allow(Facemock::User).to receive(:find_by_email) { @user }
+        @authorization_code = Facemock::AuthorizationCode.new(user_id: @user.id)
+        allow(Facemock::AuthorizationCode).to receive(:create!) { @authorization_code }
         @path = path
       end
     end
@@ -81,10 +81,10 @@ describe Facemock::OAuth::Authentication do
         @path = "/test"
         Facemock::OAuth::Authentication.path = @path
 
-        @user = Facemock::Database::User.new({id: 1, email: email, password: password})
-        allow(Facemock::Database::User).to receive(:find_by_email) { @user }
-        @authorization_code = Facemock::Database::AuthorizationCode.new(user_id: @user.id)
-        allow(Facemock::Database::AuthorizationCode).to receive(:create!) { @authorization_code }
+        @user = Facemock::User.new({id: 1, email: email, password: password})
+        allow(Facemock::User).to receive(:find_by_email) { @user }
+        @authorization_code = Facemock::AuthorizationCode.new(user_id: @user.id)
+        allow(Facemock::AuthorizationCode).to receive(:create!) { @authorization_code }
       end
       after  { Facemock::OAuth::Authentication.path = path }
     end

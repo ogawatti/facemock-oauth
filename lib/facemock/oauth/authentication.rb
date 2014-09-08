@@ -13,9 +13,9 @@ module Facemock
           email    = body["email"]
           password = body["pass"]
 
-          user = Facemock::Database::User.find_by_email(email)
+          user = Facemock::User.find_by_email(email)
           if user && user.password == password
-            code = Facemock::Database::AuthorizationCode.create!(user_id: user.id)
+            code = Facemock::AuthorizationCode.create!(user_id: user.id)
             location = location(env, CallbackHook.path, { code: code.string })
           else
             location = location(env, "/facemock/sign_in")
