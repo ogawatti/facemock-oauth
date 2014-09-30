@@ -2,11 +2,11 @@ module Facemock
   module OAuth
     class LoginHook < RackMiddleware
       DEFAULT_PATH = "/sign_in"
-      @path = DEFAULT_PATH
+      @paths = [ DEFAULT_PATH ]
 
       def call(env)
         res = super
-        if env["PATH_INFO"] == LoginHook.path
+        if LoginHook.paths.include?(env["PATH_INFO"])
           code   = 302
           body   = []
           header = { "Content-Type"           => "text/html;charset=utf-8",

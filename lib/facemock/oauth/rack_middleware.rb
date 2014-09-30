@@ -5,6 +5,7 @@ module Facemock
     class RackMiddleware
       class << self
         attr_accessor :path
+        attr_accessor :paths
       end
 
       def initialize(app)
