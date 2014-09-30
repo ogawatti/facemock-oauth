@@ -3,6 +3,10 @@
 module Facemock
   module OAuth
     class Login < RackMiddleware
+      class << self
+        attr_accessor :path
+      end
+
       VIEW_DIRECTORY = File.expand_path("../../../../view", __FILE__)
       VIEW_FILE_NAME = "login.html"
       DEFAULT_PATH = "/facemock/sign_in"

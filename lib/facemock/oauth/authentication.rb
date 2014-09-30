@@ -3,6 +3,10 @@ require 'facemock'
 module Facemock
   module OAuth
     class Authentication < RackMiddleware
+      class << self
+        attr_accessor :path
+      end
+
       DEFAULT_PATH = "/facemock/oauth"
       @path = DEFAULT_PATH
 

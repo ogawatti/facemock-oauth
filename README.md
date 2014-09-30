@@ -39,7 +39,7 @@ for Rails
 
     $ vi config/environments/development.rb
 
-    Facemock::OAuth::LoginHook.path    = '/facebook/sign_in'
+    Facemock::OAuth::LoginHook.paths   = [ '/facebook/sign_in', '/user/facebook/sign_in' ]
     Facemock::OAuth::CallbackHook.path = '/users/facemock/auth/callback'
 
     config.middleware.use Facemock::OAuth::LoginHook
@@ -54,7 +54,7 @@ for Sinatra
     require 'sinatra'
     require 'facemock-oauth'
 
-    Facemock::OAuth::LoginHook.path    = '/facebook/sign_in'
+    Facemock::OAuth::LoginHook.paths   = [ '/facebook/sign_in', '/user/facebook/sign_in' ]
     Facemock::OAuth::CallbackHook.path = '/users/facemock/auth/callback'
 
     use Facemock::OAuth::LoginHook

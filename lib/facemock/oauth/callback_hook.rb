@@ -3,6 +3,10 @@ require 'facemock'
 module Facemock
   module OAuth
     class CallbackHook < RackMiddleware
+      class << self
+        attr_accessor :path
+      end
+
       DEFAULT_PATH = "/users/auth/callback"
       @path = DEFAULT_PATH
 

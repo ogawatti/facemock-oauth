@@ -15,18 +15,19 @@ describe Facemock::OAuth::LoginHook do
   end
 
   describe '.path' do
-    subject { Facemock::OAuth::LoginHook.path }
-    it { is_expected.to eq path }
+    subject { Facemock::OAuth::LoginHook.paths }
+    it { is_expected.to eq [ path ] }
   end
 
   describe '.path=' do
     context 'with "/test"' do
       before { @path = "/test" }
-      after  { Facemock::OAuth::LoginHook.path = path }
+      after  { Facemock::OAuth::LoginHook.paths = [ path ] }
 
       it 'should set class instance variable path' do
-        Facemock::OAuth::LoginHook.path = @path
-        expect(Facemock::OAuth::LoginHook.path).to eq @path
+        Facemock::OAuth::LoginHook.paths << @path
+        expect(Facemock::OAuth::LoginHook.paths).to include path
+        expect(Facemock::OAuth::LoginHook.paths).to include @path
       end
     end
   end
@@ -48,7 +49,7 @@ describe Facemock::OAuth::LoginHook do
     before { @path = '/' }
   end
 
-  describe "GET '/facebook/sign_in'" do
+  describe "GET '/sign_in'" do
     context 'when path is default value', assert: :RedirectToFacemockSignin do
       before { @path = path }
     end
@@ -56,9 +57,9 @@ describe Facemock::OAuth::LoginHook do
     context 'when path variable set ather path', assert: :RequestSuccess do
       before do
         @path = path
-        Facemock::OAuth::LoginHook.path = "/test"
+        Facemock::OAuth::LoginHook.paths = [ "/test" ]
       end
-      after  { Facemock::OAuth::LoginHook.path = path }
+      after  { Facemock::OAuth::LoginHook.paths = [ path ] }
     end
   end
 
@@ -66,9 +67,9 @@ describe Facemock::OAuth::LoginHook do
     context "when path variable set '/test'", assert: :RedirectToFacemockSignin do
       before do
         @path = "/test"
-        Facemock::OAuth::LoginHook.path = @path
+        Facemock::OAuth::LoginHook.paths = [ @path ]
       end
-      after  { Facemock::OAuth::LoginHook.path = path }
+      after  { Facemock::OAuth::LoginHook.paths = [ path ] }
     end
   end
 end

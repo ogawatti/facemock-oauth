@@ -3,10 +3,6 @@ require 'rack'
 module Facemock
   module OAuth
     class RackMiddleware
-      class << self
-        attr_accessor :path
-      end
-
       def initialize(app)
         @app = app
       end
