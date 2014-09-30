@@ -1,6 +1,10 @@
 module Facemock
   module OAuth
     class LoginHook < RackMiddleware
+      class << self
+        attr_accessor :paths
+      end
+
       DEFAULT_PATH = "/sign_in"
       @paths = [ DEFAULT_PATH ]
 
